@@ -2,5 +2,13 @@
     <qresource prefix="/images"/>
     <qresource prefix="/">
         <file>moulin.png</file>
+        <file>background.png</file>
+        <file>Button.png</file>
+        <file>dora.png</file>
+        <file>mouzaw.png</file>
+        <file>pvpButtonResized.png</file>
+        <file>buttonAplhaBeta.png</file>
+        <file>buttonInstructions.png</file>
+        <file>buttonMinMax.png</file>
     </qresource>
 </RCC>

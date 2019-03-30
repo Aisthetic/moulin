@@ -6,7 +6,8 @@
 #include <QColor>
 #include <button.h>
 #include <QString>
-
+#include <QEvent>
+#include <QDebug>
 //Window's width without the scorebar is roughly 950
 Game::Game()
 {
@@ -15,22 +16,30 @@ Game::Game()
     //scene->setSceneRect(0,0,1600,1200);
 
     //Making the view
-    setFixedSize(1300,860);
+    setFixedSize(1366,768);
+    setScene(scene);
+    viewport()->installEventFilter(this);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setScene(scene);
-
     displayBoard();
     displayMenu();
-
 }
 
 void Game::displayBoard(){
     QPixmap imgPixmap(":/background.png");
-    QGraphicsPixmapItem* item = new QGraphicsPixmapItem(imgPixmap.scaled(QSize(1300,860)));
+    QGraphicsPixmapItem* item = new QGraphicsPixmapItem(imgPixmap.scaled(QSize(1366,768)));
     item->setZValue(-0.1);
     scene->addItem(item);
     show();
+}
+
+bool Game::eventFilter(QObject *object, QEvent *event)
+{
+    if (object == viewport() && event->type() == QEvent::Wheel) {
+        qDebug() << "Scroll disabled";
+        return true;
+    }
+    return false;
 }
 
 void Game::displayMenu(){

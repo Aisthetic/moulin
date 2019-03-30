@@ -18,6 +18,9 @@ public:
 
     //Menu buttons
     Button *pvpBt,*alphaBt,*miniBt,*instBt;
+
+    //Event filters
+    bool eventFilter(QObject *object, QEvent *event);
 };
 
 #endif // GAME_H
